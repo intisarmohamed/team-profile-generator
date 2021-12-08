@@ -1,4 +1,5 @@
 const inquirer = require("inquirer");
+
 const {
   managerQuestions,
   engineerQuestions,
@@ -7,30 +8,41 @@ const {
 const manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
-const categorisedTeams = require("../utils");
-const generateHtml = require("../utils");
-const writeToFile = require("../utils");
+const {
+  categorisedTeams,
+  generateCards,
+  generateHtml,
+  writeToFile,
+} = require("../utils");
+
 const askQuestions = async () => {
-  const askManagerQuestions = await inquirer.prompt(managerQuestions);
-  const addManager = new manager();
-  manager.push(addManager);
+  const employees = [];
+
+  const managerAnswers = await inquirer.prompt(managerQuestions);
+  const newManager = new manager(managerAnswers);
+  employees.push(newManager);
+  console.log(managerAnswers);
   while (
-    managerQuestions.addMember !== "I don't want to add any more team members"
+    managerAnswers.addMember !== "I don't want to add any more team members"
   ) {
-    if (managerQuestions.addMember == "Engineer") {
-      const askEngineerQuestions = await inquirer.prompt(engineerQuestions);
-      const addEngineer = new Engineer();
-      engineer.push(addEngineer);
-    } else if (managerQuestions.addMember == "Intern") {
-      const askInternQuestions = await inquirer.prompt(internQuestions);
-      const addIntern = new Intern();
-      intern.push(addIntern);
+    if (managerAnswers.addMember == "Engineer") {
+      const engineerAnswers = await inquirer.prompt(engineerQuestions);
+      const newEngineer = new Engineer(engineerAnswers);
+      employees.push(newEngineer);
+      managerAnswers.addMember = engineerAnswers.addMember;
+    } else if (managerAnswers.addMember == "Intern") {
+      const internAnswers = await inquirer.prompt(internQuestions);
+      const newIntern = new Intern(internAnswers);
+      employees.push(newIntern);
+      managerAnswers.addMember = internAnswers.addMember;
     }
   }
-  const html = generateHtml(categorisedTeams);
-  writeToFile = ("../dist/index.html", html);
+
+  const categorisedEmployees = categorisedTeams(employees);
+  const html = generateHtml(categorisedEmployees);
+  writeToFile("./dist/index.html", html);
   console.log("Team Successfully Generated");
   process.exit(0);
 };
 
-askManagerQuestions();
+askQuestions();

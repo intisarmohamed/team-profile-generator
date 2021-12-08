@@ -42,7 +42,7 @@ const generateHtml = ({ manager, engineer, intern }) => {
     <body>
       <header>
         <div class="jumbotron text-center">
-          <h1 class="display-4">My Notes</h1>
+          <h1 class="display-4">My Team</h1>
         </div>
       </header>
   

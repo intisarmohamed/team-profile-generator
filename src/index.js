@@ -21,7 +21,6 @@ const askQuestions = async () => {
   const managerAnswers = await inquirer.prompt(managerQuestions);
   const newManager = new manager(managerAnswers);
   employees.push(newManager);
-  console.log(managerAnswers);
   while (
     managerAnswers.addMember !== "I don't want to add any more team members"
   ) {

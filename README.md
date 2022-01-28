@@ -8,12 +8,9 @@ A Node.js command-line application that takes in information about employees on 
 
 - clone this repo into a local folder
 - install all relevant packages (inquirer & jest)
-- run 'npm run start' in the terminal
+  `npm install`
+- run `npm run start` in the terminal
 
-## Images
-
-<img src ='./images/team generator.png' alt='Picture of example HTML file with team'>
+### Images
 
 ### Demo video
-
-https://watch.screencastify.com/v/L5r0OqyAAAd7SfK91YgT

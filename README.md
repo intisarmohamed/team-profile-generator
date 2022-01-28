@@ -13,3 +13,7 @@ A Node.js command-line application that takes in information about employees on 
 ## Images
 
 <img src ='./images/team generator.png' alt='Picture of example HTML file with team'>
+
+### Demo video
+
+https://watch.screencastify.com/v/L5r0OqyAAAd7SfK91YgT
